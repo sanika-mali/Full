@@ -67,8 +67,8 @@ function Signup() {
                 const dataRes = await fetchData.json()
                 console.log(dataRes)
 
-                // alert("successfull")
-                //  navigate("/Login")
+                alert("successfull")
+                navigate("/Login")
 
             }
             else {
