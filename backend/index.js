@@ -37,22 +37,25 @@ const userModel = mongoose.model("user",userSchema)
 app.get("/", (req, res) => {
     res.send("server is running")
 })
-app.post("/Signup", async(req, res) => {
-    console.log(req.body)
-    const {email} = req.body
+app.post("/Signup", async (req, res) => {
+    console.log(req.body);
+    const { email } = req.body;
 
-    userModel.findOne({email : email},(err,result)=>{
-        console.log(result)
-        console.log(err)
-        if(result){
-            res.send({message : "Email id is already register"})
-        }
-        else{
-            const data = userModel(req.body)
-            const save = data.save()
-            res.send({message : "Successfully sign up"})
-        }
-    })
-})
+    try {
+        const result = await userModel.findOne({ email: email });
 
+        if (result) {
+            return res.send({ message: "Email id is already registered" });
+        }
+
+        const data = userModel(req.body);
+        await data.save();
+
+        res.send({ message: "Successfully signed up" });
+    } catch (err) {
+        console.error(err);
+        // Handle other errors or send an appropriate response
+        res.status(500).send({ message: "Internal server error" });
+    }
+});
 app.listen(PORT, () => console.log("server is running at port : " + PORT))
