@@ -1,14 +1,19 @@
 import { Outlet } from "react-router-dom";
 import Header from "./component/Header";
+import toast, { Toaster } from 'react-hot-toast';
 
 function App() {
   return (
-   <div>
-        <Header/>
+    <>
+      <Toaster />
+      <div>
+        <Header />
         <main className="pt-16 bg-slate-100 min-h-[calc(100vh)]">
-            <Outlet/> 
+          <Outlet />
         </main>
-   </div>
+      </div>
+    </>
+
   );
 }
 
