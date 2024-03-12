@@ -50,7 +50,7 @@ function Signup() {
             }
         })
     }
-    console.log("http://localhost:8080/")
+    console.log("http://localhost:8080")
     const handleSubmit = async(e) => {
         e.preventDefault();
         const { firstName, email, password, confirmPassword } = data;
@@ -66,10 +66,10 @@ function Signup() {
                 
                 // console.log(fetchData)
                 const dataRes = await fetchData.json()
-                console.log(dataRes)
+                console.log(data)
 
-                alert(dataRes.massage)
-                // toast(dataRes.message)
+                // alert(dataRes.massage)
+                toast(dataRes.message)
                 // navigate("/Login")
 
             }
